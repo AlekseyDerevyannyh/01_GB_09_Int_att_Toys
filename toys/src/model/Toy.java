@@ -12,6 +12,11 @@ public class Toy {
         this.probability = probability;
     }
 
+    public Toy(String name, Byte probability) {
+        this.name = name;
+        this.probability = probability;
+    }
+
     public String getId() {
         return id;
     }
