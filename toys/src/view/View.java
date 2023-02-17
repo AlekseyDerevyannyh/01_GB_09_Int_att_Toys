@@ -56,7 +56,15 @@ public class View {
                 case PUT:
                     try {
                         String name = prompt("Enter toy name: ");
-                        Byte probability = Byte.valueOf(prompt("Enter toy probability: "));
+                        Byte probability;
+                        while (true) {
+                            try {
+                                probability = Byte.valueOf(prompt("Enter toy probability: "));
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Input error! Try again!");
+                            }
+                        }
                         controller.saveToy(new Toy(name, probability));
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
@@ -67,7 +75,15 @@ public class View {
                     try {
                         String toyId = prompt("Enter toy ID: ");
                         String name = prompt("Enter toy name: ");
-                        Byte probability = Byte.valueOf(prompt("Enter toy probability: "));
+                        Byte probability;
+                        while (true) {
+                            try {
+                                probability = Byte.valueOf(prompt("Enter toy probability: "));
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Input error! Try again!");
+                            }
+                        }
                         controller.editToy(new Toy(toyId, name, probability));
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
