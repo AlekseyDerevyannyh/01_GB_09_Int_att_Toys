@@ -3,7 +3,9 @@ package controller;
 import model.Repository;
 import model.Toy;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
     private final Repository repository;
@@ -45,4 +47,24 @@ public class Controller {
     public void deleteToy(String toyId) {
         repository.deleteToy(toyId);
     }
+
+    public Integer raffleToy() {
+        Integer result = 0;
+        List<Toy> toys = repository.getAllToys();
+        Integer sumProbability = repository.getSumProbability(toys);
+        Map<String, Integer[]> map = new HashMap<>();
+        Integer startPosition = 1;
+        for (Toy toy : toys) {
+            Integer[] position = new Integer[2];
+            position[0] = startPosition;
+            position[1] = startPosition + toy.getProbability();
+            map.put(toy.getId(), position);
+            startPosition = position[1] + 1;
+        }
+
+        System.out.println(map);
+        return result;
+    }
+
+
 }
