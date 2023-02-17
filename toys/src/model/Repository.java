@@ -73,4 +73,12 @@ public class Repository {
         List<Toy> toys = getAllToys();
         saveToy(toy, toys);
     }
+
+    public Integer getSumProbability(List<Toy> toys) {
+        int sum = 0;
+        for (Toy toy : toys) {
+            sum += toy.getProbability();
+        }
+        return sum;
+    }
 }

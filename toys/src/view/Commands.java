@@ -8,5 +8,6 @@ public enum Commands {
     EDIT,
     LIST,
     DELETE,
+    GET,
     EXIT
 }
