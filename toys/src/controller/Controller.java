@@ -33,8 +33,16 @@ public class Controller {
         throw new Exception("Toy not found!");
     }
 
+    public List<Toy> readToys() {
+        return repository.getAllToys();
+    }
+
     public void editToy(Toy toy) {
         validateToyData(toy);
         repository.updateToy(toy);
+    }
+
+    public void deleteToy(String toyId) {
+        repository.deleteToy(toyId);
     }
 }

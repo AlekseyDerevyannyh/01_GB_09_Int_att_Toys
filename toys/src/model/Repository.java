@@ -21,13 +21,13 @@ public class Repository {
     }
 
     private Integer getMaxId(List<Toy> toys) {
-        int Id = 0;
+        int id = 0;
         for (Toy toy : toys) {
-            if (Integer.parseInt(toy.getId()) > Id) {
-                Id = Integer.parseInt(toy.getId());
+            if (Integer.parseInt(toy.getId()) > id) {
+                id = Integer.parseInt(toy.getId());
             }
         }
-        return Id;
+        return id;
     }
 
     private void saveToys(List<Toy> toys) {
@@ -47,10 +47,10 @@ public class Repository {
         List<Toy> toys = getAllToys();
         int newId = getMaxId(toys);
         newId ++;
-        String Id = String.format("%d", newId);
-        toy.setId(Id);
+        String id = String.format("%d", newId);
+        toy.setId(id);
         saveToy(toy, toys);
-        return Id;
+        return id;
     }
 
     private Toy findToy(String toyId, List<Toy> toys) {
