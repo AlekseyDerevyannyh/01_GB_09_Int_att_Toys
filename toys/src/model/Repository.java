@@ -43,7 +43,7 @@ public class Repository {
         saveToys(toys);
     }
 
-    public String CreateToy(Toy toy) {
+    public String createToy(Toy toy) {
         List<Toy> toys = getAllToys();
         int newId = getMaxId(toys);
         newId ++;
