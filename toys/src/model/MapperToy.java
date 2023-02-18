@@ -7,6 +7,12 @@ public class MapperToy {
 
     public Toy map(String line) {
         String[] lines = line.split(";");
-        return new Toy(lines[0], lines[1], Byte.valueOf(lines[2]));
+        try {
+            Toy toy =  new Toy(lines[0], lines[1], Byte.valueOf(lines[2]));
+            return toy;
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid format of data in toys.scv file!");
+        }
+        return null;
     }
 }
