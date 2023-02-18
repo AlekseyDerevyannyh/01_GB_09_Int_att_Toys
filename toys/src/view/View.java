@@ -40,6 +40,8 @@ public class View {
                     System.out.println("Edit - edit note by ID");
                     System.out.println("Delete - delete note by ID");
                     System.out.println("Get - start raffle");
+                    System.out.println("Get10 - start raffle 10 times");
+                    System.out.println("Clear - clear out.txt file");
                     System.out.println("Exit - exit from program");
                     break;
                 case LIST:
@@ -98,8 +100,24 @@ public class View {
                     controller.deleteToy(toyId);
                     break;
                 case GET:
-                    controller.raffleToy();
+                    Integer winnerId = controller.raffleToy();
+                    if (winnerId != 0)
+                        System.out.println("Toy with ID: " + winnerId + " added to out.txt file");
+                    else
+                        System.out.println("Failed!");
                     break;
+                case GET10:
+                    for (int i = 0; i < 10; i ++) {
+                        Integer _winnerId = controller.raffleToy();
+                        if (_winnerId != 0)
+                            System.out.println("Toy with ID: " + _winnerId + " added to out.txt file");
+                        else
+                            System.out.println("Failed!");
+                    }
+                    break;
+                case CLEAR:
+                    controller.clearOutFile();
+                    System.out.println("File out.txt cleared!");
             }
         }
     }

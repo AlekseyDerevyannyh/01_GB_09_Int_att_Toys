@@ -1,17 +1,19 @@
 package controller;
 
 import model.Repository;
+import model.RepositoryOut;
 import model.Toy;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Controller {
     private final Repository repository;
+    private final RepositoryOut repositoryOut;
 
-    public Controller(Repository repository) {
+    public Controller(Repository repository, RepositoryOut repositoryOut) {
         this.repository = repository;
+        this.repositoryOut = repositoryOut;
     }
 
     public void validateToyData(Toy toy) {
@@ -52,19 +54,30 @@ public class Controller {
         Integer result = 0;
         List<Toy> toys = repository.getAllToys();
         Integer sumProbability = repository.getSumProbability(toys);
-        Map<String, Integer[]> map = new HashMap<>();
-        Integer startPosition = 1;
+        List<Integer> probabilityRange = new ArrayList<>();
+
+        probabilityRange.add(1);
+        Integer position = 1;
+
         for (Toy toy : toys) {
-            Integer[] position = new Integer[2];
-            position[0] = startPosition;
-            position[1] = startPosition + toy.getProbability();
-            map.put(toy.getId(), position);
-            startPosition = position[1] + 1;
+            position = position + toy.getProbability();
+            probabilityRange.add(position);
         }
 
-        System.out.println(map);
+        Integer random = ThreadLocalRandom.current().nextInt(probabilityRange.stream().min(Integer::compareTo).get(),
+                probabilityRange.stream().max(Integer::compareTo).get());
+
+        for (int i = 0; i < toys.size(); i ++) {
+            if (random >= probabilityRange.get(i) && random < probabilityRange.get(i + 1)) {
+                result = Integer.valueOf(toys.get(i).getId());
+                repositoryOut.addToFile(toys.get(i));
+                return result;
+            }
+        }
         return result;
     }
 
-
+    public void clearOutFile() {
+        repositoryOut.clearFile();
+    }
 }

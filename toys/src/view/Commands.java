@@ -9,5 +9,7 @@ public enum Commands {
     LIST,
     DELETE,
     GET,
+    GET10,
+    CLEAR,
     EXIT
 }

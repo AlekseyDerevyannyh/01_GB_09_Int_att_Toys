@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
-    private Mapper mapper = new Mapper();
+    private MapperToy mapperToy = new MapperToy();
     private FileOperation fileOperation;
 
     public Repository(FileOperation fileOperation) {
@@ -15,7 +15,7 @@ public class Repository {
         List<String> lines = fileOperation.readAllLines();
         List<Toy> toys = new ArrayList<>();
         for (String line : lines) {
-            toys.add(mapper.map(line));
+            toys.add(mapperToy.map(line));
         }
         return toys;
     }
@@ -33,7 +33,7 @@ public class Repository {
     private void saveToys(List<Toy> toys) {
         List<String> lines = new ArrayList<>();
         for (Toy toy : toys) {
-            lines.add(mapper.map(toy));
+            lines.add(mapperToy.map(toy));
         }
         fileOperation.saveAllLines(lines);
     }
