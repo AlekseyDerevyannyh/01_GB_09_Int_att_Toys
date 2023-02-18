@@ -1,6 +1,6 @@
 package model;
 
-public class Mapper {
+public class MapperToy {
     public String map(Toy toy) {
         return String.format("%s;%s;%d", toy.getId(), toy.getName(), toy.getProbability());
     }

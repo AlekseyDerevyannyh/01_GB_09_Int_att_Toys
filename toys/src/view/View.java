@@ -98,7 +98,9 @@ public class View {
                     controller.deleteToy(toyId);
                     break;
                 case GET:
-                    controller.raffleToy();
+                    Integer result = controller.raffleToy();
+                    if (result != 0)
+                        System.out.println("Toy with ID: " + result + " added to out.txt file");
                     break;
             }
         }
