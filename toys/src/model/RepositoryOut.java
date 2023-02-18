@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryOut {
@@ -15,5 +16,9 @@ public class RepositoryOut {
         List<String> lines = fileOperation.readAllLines();
         lines.add(mapperOut.map(toy));
         fileOperation.saveAllLines(lines);
+    }
+
+    public void clearFile() {
+        fileOperation.saveAllLines(new ArrayList<>());
     }
 }

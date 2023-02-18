@@ -74,8 +74,10 @@ public class Controller {
                 return result;
             }
         }
-        System.out.println("Failed!");
         return result;
     }
 
+    public void clearOutFile() {
+        repositoryOut.clearFile();
+    }
 }
